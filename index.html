@@ -885,36 +885,6 @@ h1 em{color:var(--gold);font-style:normal}
   margin:2.5rem auto 2rem;
   text-align:center;
 }
-
-/* ── FEATURED CHECKOUT EMBED SECTION ── */
-.featured-checkout{
-  margin:3rem auto 2rem;
-  text-align:center;
-}
-.featured-sub{
-  text-align:center;
-  color:var(--cream-dim);
-  font-size:1.05rem;
-  margin-bottom:1.5rem;
-  opacity:0.9;
-}
-.checkout-embed-wrap{
-  max-width:760px;
-  margin:0 auto;
-  padding:1.5rem;
-  border-radius:14px;
-  border:1.5px solid rgba(201,148,58,0.55);
-  background:linear-gradient(135deg,rgba(31,8,8,0.7) 0%,rgba(42,13,13,0.6) 50%,rgba(26,6,6,0.7) 100%);
-  box-shadow:0 8px 32px rgba(168,32,32,0.18), 0 0 0 1px rgba(201,148,58,0.12) inset;
-  position:relative;
-  z-index:5;
-}
-.checkout-embed-wrap .tc-v2-embeddable-target{
-  background:#fff;
-  border-radius:8px;
-  overflow:hidden;
-  min-height:200px;
-}
 .sound-sub{
   text-align:center;
   color:var(--cream-dim);
@@ -1032,95 +1002,6 @@ h1 em{color:var(--gold);font-style:normal}
   .music-fab-label{display:none}
   .music-fab-popup{bottom:78px;right:18px;width:calc(100vw - 36px)}
 }
-
-/* ── THRIVECART CHECKOUT MODAL ── */
-.checkout-overlay{
-  position:fixed;inset:0;
-  z-index:200;
-  background:rgba(8,4,5,0.88);
-  backdrop-filter:blur(6px);
-  display:flex;align-items:center;justify-content:center;
-  padding:1.5rem;
-  opacity:0;visibility:hidden;
-  transition:opacity .35s ease, visibility .35s;
-  overflow-y:auto;
-}
-.checkout-overlay.open{
-  opacity:1;visibility:visible;
-}
-.checkout-modal{
-  background:linear-gradient(135deg,#1f0808 0%,#2a0d0d 50%,#1a0606 100%);
-  border:1.5px solid rgba(201,148,58,0.55);
-  border-radius:18px;
-  padding:2rem 1.6rem 1.6rem;
-  max-width:780px;
-  width:100%;
-  max-height:92vh;
-  overflow-y:auto;
-  position:relative;
-  box-shadow:0 16px 60px rgba(0,0,0,0.7), 0 0 28px rgba(168,32,32,0.28);
-  transform:translateY(20px) scale(0.96);
-  transition:transform .35s cubic-bezier(.4,0,.2,1);
-}
-.checkout-overlay.open .checkout-modal{
-  transform:translateY(0) scale(1);
-}
-.checkout-close{
-  position:absolute;top:14px;right:14px;
-  background:rgba(13,8,10,0.85);
-  border:1px solid rgba(201,148,58,0.5);
-  color:var(--gold-lt);
-  width:34px;height:34px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-  font-size:20px;font-family:serif;
-  z-index:3;
-  transition:background .2s,border-color .2s,transform .2s;
-}
-.checkout-close:hover{
-  background:rgba(168,32,32,0.45);
-  border-color:rgba(232,200,122,0.85);
-  transform:rotate(90deg);
-}
-.checkout-title{
-  font-family:'Cinzel Decorative',serif;
-  font-size:clamp(1.15rem, 3.5vw, 1.45rem);
-  color:var(--gold-lt);
-  text-align:center;
-  margin:0 0 0.3rem;
-  letter-spacing:0.06em;
-  text-shadow:0 2px 14px rgba(139,26,26,0.5);
-  padding-right:30px;
-}
-.checkout-subtitle{
-  text-align:center;
-  color:var(--cream-dim);
-  font-family:'Cormorant Garamond',serif;
-  font-size:1rem;
-  margin:0 0 1.2rem;
-  opacity:0.85;
-}
-.checkout-slot{
-  background:#fff;
-  border-radius:10px;
-  overflow:hidden;
-  min-height:200px;
-  position:relative;
-}
-.checkout-placeholder{
-  padding:3rem 1.5rem;
-  text-align:center;
-  color:#666;
-  font-family:'Cormorant Garamond',serif;
-  font-size:1rem;
-  font-style:italic;
-}
-@media(max-width:520px){
-  .checkout-overlay{padding:0.8rem}
-  .checkout-modal{padding:1.4rem 1rem 1rem;border-radius:14px}
-  .checkout-title{font-size:1.1rem}
-}
-
 /* ── FOOTER ── */
 footer{
   text-align:center;
@@ -2168,20 +2049,6 @@ footer{
     data-src="https://open.spotify.com/embed/track/1eTDS5pniuw7otJd9rG6ud?utm_source=generator&theme=0">
   </iframe>
 </div>
-
-<!-- ══════ THRIVECART CHECKOUT MODAL ══════ -->
-<div class="checkout-overlay" id="checkout-overlay" aria-hidden="true">
-  <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
-    <button class="checkout-close" id="checkout-close" aria-label="Close checkout">×</button>
-    <h3 class="checkout-title" id="checkout-title">Complete Your Enrollment</h3>
-    <p class="checkout-subtitle"><em>Secure checkout powered by ThriveCart.</em></p>
-    <div class="checkout-slot" id="checkout-slot">
-      <!-- ThriveCart embed gets injected here based on the slug data attribute on the Enroll button clicked -->
-      <div class="checkout-placeholder">Loading checkout…</div>
-    </div>
-  </div>
-</div>
-
 <!-- ══════ 10% OFF EMAIL POPUP ══════ -->
 <div class="popup-overlay" id="popup">
   <div class="popup">
@@ -2249,69 +2116,6 @@ footer{
         if (e.target.closest('.best-pdf') || e.target.closest('.best-cta')) return;
         window.open(card.dataset.href, '_blank', 'noopener');
       });
-    });
-  })();
-
-  /* ═══════════════════════════════════════════════════════════════════════
-     LILITH POPUP CHECKOUT — SIMPLE & RELIABLE
-     ───────────────────────────────────────────────────────────────────────
-     Strategy: pre-load the ThriveCart embed into the (hidden) modal so
-     their script can find and render the form on initial page load. Then
-     opening/closing the modal is just CSS show/hide — the form is alive
-     and ready every time.
-     ═══════════════════════════════════════════════════════════════════════ */
-  (function(){
-    const overlay  = document.getElementById('checkout-overlay');
-    const closeBtn = document.getElementById('checkout-close');
-    const slot     = document.getElementById('checkout-slot');
-    const title    = document.getElementById('checkout-title');
-
-    // STEP 1 — Pre-inject the Lilith ThriveCart embed div into the hidden modal.
-    // We do this on page load so ThriveCart's script renders the form once,
-    // then we just toggle the modal's visibility from there.
-    slot.innerHTML = '<div class="tc-v2-embeddable-target" data-thrivecart-account="occultcourses" data-thrivecart-tpl="v2" data-thrivecart-product="66" data-thrivecart-embeddable="tc-occultcourses-66-KFC1NP"></div>';
-
-    // Load the ThriveCart script (only once, in <head>-like position)
-    const tcScript = document.createElement('script');
-    tcScript.async = true;
-    tcScript.src = '//tinder.thrivecart.com/embed/v2/thrivecart.js';
-    tcScript.id = 'tc-occultcourses-66-KFC1NP';
-    document.body.appendChild(tcScript);
-
-    console.log('[Sentire Occulta] ThriveCart Lilith embed pre-loaded into modal');
-
-    // STEP 2 — Intercept clicks on the Lilith Enroll button → open modal
-    function openCheckout(productLabel){
-      title.textContent = productLabel || 'Lilith Transcendent';
-      overlay.classList.add('open');
-      overlay.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      console.log('[Sentire Occulta] Checkout modal opened for:', productLabel);
-    }
-    function closeCheckout(){
-      overlay.classList.remove('open');
-      overlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      console.log('[Sentire Occulta] Checkout modal closed');
-    }
-
-    // Intercept clicks on Lilith Enroll links
-    document.addEventListener('click', (e) => {
-      const trigger = e.target.closest('a[href*="thrivecart.com/lilith/"]');
-      if (!trigger) return;
-      // Only intercept Enroll-style clicks (not other Lilith links that may exist)
-      if (!trigger.matches('.best-cta, .sub-course, .library-cta, .path-bundle-cta')) return;
-      e.preventDefault();
-      e.stopPropagation();
-      openCheckout('Lilith Transcendent');
-    }, true);
-
-    closeBtn.addEventListener('click', closeCheckout);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) closeCheckout();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('open')) closeCheckout();
     });
   })();
 
