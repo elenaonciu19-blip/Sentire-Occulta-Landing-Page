@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentire Occulta: Curated Esoteric Knowledge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --red:       #8B1A1A;
+  --red-deep:  #5C0E0E;
+  --red-mid:   #A82020;
+  --red-glow:  #C0392B;
+  --gold:      #C9943A;
+  --gold-lt:   #E8C87A;
+  --gold-dim:  #7A5A1E;
+  --cream:     #F0E6D0;
+  --cream-dim: #B8A898;
+  --ink:       #0D080A;
+  --surface:   #130809;
+  --surface2:  #1A0B0B;
+  --surface3:  #231010;
+  --border:    rgba(201,148,58,0.18);
+  --border-h:  rgba(201,148,58,0.45);
+  --r:         12px;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--ink);
+  color:var(--cream);
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;
+  line-height:1.7;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── MYSTIC BACKGROUND ── */
+.bg-canvas{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.bg-canvas::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(139,26,26,0.55) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 50% 110%, rgba(92,14,14,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 0% 50%, rgba(139,26,26,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 100% 50%, rgba(139,26,26,0.18) 0%, transparent 60%);
+}
+.bg-canvas::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 8%  12%, rgba(201,148,58,0.5) 0%,transparent 100%),
+    radial-gradient(1px   1px   at 22% 5%,  rgba(240,230,208,0.2) 0%,transparent 100%),
+    radial-gradient(2px   2px   at 38% 18%, rgba(201,148,58,0.3) 0%,transparent 100%),
+    radial-gradient(1px   1px   at 55% 3%,  rgba(240,230,208,0.15)0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 14%, rgba(201,148,58,0.4) 0%,transparent 100%),
+    radial-gradient(1px   1px   at 85% 7%,  rgba(240,230,208,0.2) 0%,transparent 100%),
+    radial-gradient(1px   1px   at 93% 25%, rgba(201,148,58,0.3) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 5%  42%, rgba(201,148,58,0.25)0%,transparent 100%),
+    radial-gradient(1px   1px   at 18% 60%, rgba(240,230,208,0.12)0%,transparent 100%),
+    radial-gradient(1px   1px   at 32% 75%, rgba(201,148,58,0.2) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 48% 88%, rgba(240,230,208,0.15)0%,transparent 100%),
+    radial-gradient(1px   1px   at 62% 65%, rgba(201,148,58,0.25)0%,transparent 100%),
+    radial-gradient(1px   1px   at 78% 82%, rgba(240,230,208,0.1) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 90% 55%, rgba(201,148,58,0.3) 0%,transparent 100%);
+}
+
+/* ── CRACKLING FIRE GLOW (bottom) ── */
+.mist{
+  position:fixed;bottom:0;left:0;right:0;height:280px;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 100% at 20% 100%, rgba(255,120,40,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 100% at 80% 100%, rgba(255,80,30,0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 80% at 50% 100%, rgba(168,32,32,0.32) 0%, transparent 70%),
+    linear-gradient(to top, rgba(92,14,14,0.45) 0%, rgba(139,26,26,0.15) 30%, transparent 100%);
+  animation:fireCrackle 0.18s steps(3) infinite, fireGlow 3s ease-in-out infinite alternate;
+}
+@keyframes fireCrackle{
+  0%   {opacity:1}
+  33%  {opacity:0.94}
+  66%  {opacity:1}
+  100% {opacity:0.97}
+}
+@keyframes fireGlow{
+  from{filter:brightness(0.95) hue-rotate(-3deg)}
+  to  {filter:brightness(1.12) hue-rotate(4deg)}
+}
+
+/* ── EMBER & ASH PARTICLES (rising) ── */
+.embers{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.ember-particle{
+  position:absolute;bottom:-10px;
+  width:3px;height:3px;
+  border-radius:50%;
+  opacity:0;
+}
+.ember-particle.fire{
+  background:#FFC966;
+  box-shadow:0 0 6px #FF8C2A, 0 0 12px rgba(255,120,40,0.7);
+}
+.ember-particle.spark{
+  background:#FFEEC4;
+  box-shadow:0 0 4px #FFD580, 0 0 8px rgba(255,200,100,0.6);
+  width:2px;height:2px;
+}
+.ember-particle.ash{
+  background:#7a6a5a;
+  opacity:0;
+  width:2.5px;height:2.5px;
+  box-shadow:0 0 3px rgba(120,100,90,0.4);
+}
+
+@keyframes riseEmber{
+  0%   {bottom:-10px; opacity:0; transform:translateX(0) scale(1)}
+  8%   {opacity:1}
+  50%  {transform:translateX(20px) scale(1.1)}
+  85%  {opacity:0.6}
+  100% {bottom:105vh; opacity:0; transform:translateX(-15px) scale(0.4)}
+}
+@keyframes riseAsh{
+  0%   {bottom:-10px; opacity:0; transform:translateX(0) rotate(0deg)}
+  10%  {opacity:0.5}
+  50%  {transform:translateX(-30px) rotate(180deg)}
+  85%  {opacity:0.3}
+  100% {bottom:105vh; opacity:0; transform:translateX(40px) rotate(360deg)}
+}
+
+/* 20 particles across the page with different positions/timings */
+.ember-particle:nth-child(1)  {left:4%;  animation:riseEmber 9s linear infinite}
+.ember-particle:nth-child(2)  {left:10%; animation:riseEmber 11s linear infinite -2s}
+.ember-particle:nth-child(3)  {left:16%; animation:riseAsh 14s linear infinite -4s}
+.ember-particle:nth-child(4)  {left:22%; animation:riseEmber 8s linear infinite -1s}
+.ember-particle:nth-child(5)  {left:28%; animation:riseEmber 12s linear infinite -6s}
+.ember-particle:nth-child(6)  {left:34%; animation:riseAsh 16s linear infinite -3s}
+.ember-particle:nth-child(7)  {left:40%; animation:riseEmber 10s linear infinite -8s}
+.ember-particle:nth-child(8)  {left:46%; animation:riseEmber 9.5s linear infinite -5s}
+.ember-particle:nth-child(9)  {left:52%; animation:riseAsh 13s linear infinite -10s}
+.ember-particle:nth-child(10) {left:58%; animation:riseEmber 11.5s linear infinite -7s}
+.ember-particle:nth-child(11) {left:64%; animation:riseEmber 8.5s linear infinite -2.5s}
+.ember-particle:nth-child(12) {left:70%; animation:riseAsh 15s linear infinite -9s}
+.ember-particle:nth-child(13) {left:76%; animation:riseEmber 10.5s linear infinite -4.5s}
+.ember-particle:nth-child(14) {left:82%; animation:riseEmber 9s linear infinite -11s}
+.ember-particle:nth-child(15) {left:88%; animation:riseAsh 14.5s linear infinite -6.5s}
+.ember-particle:nth-child(16) {left:94%; animation:riseEmber 12.5s linear infinite -3.5s}
+.ember-particle:nth-child(17) {left:7%;  animation:riseEmber 13s linear infinite -8.5s}
+.ember-particle:nth-child(18) {left:37%; animation:riseAsh 17s linear infinite -12s}
+.ember-particle:nth-child(19) {left:67%; animation:riseEmber 11s linear infinite -1.5s}
+.ember-particle:nth-child(20) {left:91%; animation:riseAsh 15.5s linear infinite -7.5s}
+
+/* ── LAYOUT ── */
+.wrap{
+  position:relative;z-index:1;
+  max-width:780px;margin:0 auto;
+  padding:0 1.25rem 5rem;
+}
+
+/* ── HERO ── */
+.hero{
+  text-align:center;
+  padding:4rem 0 1.5rem;
+}
+
+.seal{
+  width:200px;height:200px;margin:0 auto 1rem;
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* Crimson aura behind sigil */
+.seal::before{
+  content:'';position:absolute;
+  inset:-25px;
+  background:radial-gradient(circle at 50% 50%,
+    rgba(201,148,58,0.35) 0%,
+    rgba(168,32,32,0.28) 30%,
+    rgba(139,26,26,0.12) 55%,
+    transparent 75%);
+  filter:blur(14px);
+  animation:auraPulse 5s ease-in-out infinite;
+  z-index:-1;
+}
+@keyframes auraPulse{
+  0%,100%{opacity:0.7;transform:scale(1)}
+  50%    {opacity:1;transform:scale(1.12)}
+}
+
+.seal svg{
+  width:100%;height:100%;
+  filter:drop-shadow(0 0 6px rgba(201,148,58,0.5));
+}
+
+/* Outer ring slowly rotates clockwise */
+.sigil-outer{
+  transform-origin:100px 100px;
+  animation:spinSlow 60s linear infinite;
+}
+@keyframes spinSlow{
+  from{transform:rotate(0deg)}
+  to  {transform:rotate(360deg)}
+}
+
+/* Inner ring rotates counter-clockwise (slower) */
+.sigil-inner-ring{
+  transform-origin:100px 100px;
+  animation:spinSlowReverse 90s linear infinite;
+}
+@keyframes spinSlowReverse{
+  from{transform:rotate(0deg)}
+  to  {transform:rotate(-360deg)}
+}
+
+/* The eye pulses/glows */
+.sigil-eye{
+  transform-origin:100px 100px;
+  animation:eyePulse 3.5s ease-in-out infinite;
+}
+@keyframes eyePulse{
+  0%,100%{opacity:0.85;filter:drop-shadow(0 0 4px rgba(232,200,122,0.6))}
+  50%    {opacity:1;filter:drop-shadow(0 0 14px rgba(255,200,100,0.9))}
+}
+
+/* Iris blinks subtly */
+.sigil-iris{
+  animation:irisGlow 2.5s ease-in-out infinite;
+}
+@keyframes irisGlow{
+  0%,100%{opacity:0.9}
+  50%    {opacity:1}
+}
+
+/* Triangle has subtle breathing */
+.sigil-triangle{
+  transform-origin:100px 100px;
+  animation:triBreathe 4s ease-in-out infinite;
+}
+@keyframes triBreathe{
+  0%,100%{opacity:0.85;transform:scale(1)}
+  50%    {opacity:1;transform:scale(1.02)}
+}
+
+/* Floating sparks around sigil */
+.star-spark{
+  position:absolute;
+  width:3px;height:3px;
+  background:#E8C87A;
+  border-radius:50%;
+  box-shadow:0 0 6px #FFC966, 0 0 12px rgba(255,180,80,0.6);
+  pointer-events:none;
+  opacity:0;
+}
+.star-spark.s1{top:8%;  left:12%; animation:twinkle 3s ease-in-out infinite}
+.star-spark.s2{top:18%; right:8%; animation:twinkle 3.5s ease-in-out infinite 0.8s}
+.star-spark.s3{top:55%; left:-2%; animation:twinkle 4s ease-in-out infinite 1.5s; width:2px;height:2px}
+.star-spark.s4{top:72%; right:5%; animation:twinkle 3.2s ease-in-out infinite 2.2s}
+.star-spark.s5{top:5%;  left:48%; animation:twinkle 4.5s ease-in-out infinite 1s; width:2px;height:2px}
+.star-spark.s6{bottom:5%;left:45%;animation:twinkle 3.8s ease-in-out infinite 2.5s}
+
+@keyframes twinkle{
+  0%,100%{opacity:0;transform:scale(0.5)}
+  50%    {opacity:1;transform:scale(1.3)}
+}
+
+.eyebrow{
+  font-family:'Cinzel',serif;
+  font-size:10px;letter-spacing:0.4em;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:0.9rem;opacity:0.8;
+}
+
+h1{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(2rem,6.5vw,3.4rem);
+  font-weight:700;
+  color:var(--cream);
+  line-height:1.15;
+  margin-bottom:0.4rem;
+  text-shadow:0 2px 30px rgba(139,26,26,0.7);
+  letter-spacing:0.02em;
+}
+h1 em{color:var(--gold);font-style:normal}
+
+.tagline{
+  font-style:italic;
+  font-size:1.05rem;
+  color:var(--cream-dim);
+  max-width:540px;margin:0.7rem auto 0;
+}
+
+.ornament{
+  display:flex;align-items:center;justify-content:center;
+  margin:1.5rem 0 2.5rem;
+  color:var(--gold);
+  font-size:18px;letter-spacing:0.6em;
+  opacity:0.65;
+  animation:ornamentFloat 4s ease-in-out infinite;
+}
+@keyframes ornamentFloat{
+  0%,100%{opacity:0.55;letter-spacing:0.6em}
+  50%    {opacity:0.85;letter-spacing:0.7em}
+}
+
+/* ── SECTION TITLES ── */
+.sect{
+  font-family:'Cinzel',serif;
+  font-size:10px;letter-spacing:0.42em;
+  color:var(--gold);text-transform:uppercase;
+  opacity:0.78;
+  margin-bottom:1rem;padding-left:2px;
+}
+.sect-spacer{margin-top:2.8rem}
+
+/* Bigger section heading for primary subtitles like "Bestsellers" */
+.sect-big{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(1.4rem, 4vw, 1.85rem);
+  font-weight:700;
+  color:var(--gold-lt);
+  text-align:center;
+  margin:0.5rem 0 1.5rem;
+  letter-spacing:0.08em;
+  text-shadow:0 2px 16px rgba(139,26,26,0.5);
+  line-height:1.2;
+}
+.sect-big-sub{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;
+  font-style:italic;
+  color:var(--cream-dim);
+  font-weight:400;
+  letter-spacing:0;
+  margin-top:0.4rem;
+  text-align:center;
+  text-transform:none;
+}
+
+/* ── BESTSELLERS ── */
+.bestsellers{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:0.85rem;
+  margin-bottom:1rem;
+}
+.best-card{
+  background:linear-gradient(160deg,#1c0a0a 0%,#240e0e 60%,#1a0707 100%);
+  border:1px solid rgba(201,148,58,0.32);
+  border-radius:var(--r);
+  padding:1.3rem 1.2rem;
+  min-height:220px;
+  text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:0.4rem;
+  position:relative;
+  transition:border-color .25s,transform .2s;
+  overflow:hidden;
+  cursor:pointer;
+}
+/* Background image layer — faded behind content */
+.best-card::after{
+  content:'';
+  position:absolute;inset:0;
+  background-image:var(--card-bg, none);
+  background-size:cover;
+  background-position:center top;
+  opacity:0.55;
+  filter:saturate(1.05) contrast(0.98);
+  z-index:0;
+  pointer-events:none;
+  transition:opacity .35s ease;
+}
+.best-card:hover::after{
+  opacity:0.75;
+}
+.best-card::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(180deg, rgba(13,8,10,0.25) 0%, rgba(13,8,10,0.55) 55%, rgba(13,8,10,0.92) 100%),
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(168,32,32,0.12) 0%,transparent 70%);
+  pointer-events:none;
+  z-index:1;
+}
+.best-card > *{position:relative;z-index:2}
+.best-card:hover{
+  border-color:rgba(232,200,122,0.7);
+  transform:translateY(-2px);
+}
+.best-tag{
+  position:absolute;top:10px;right:12px;
+  font-family:'Cinzel',serif;font-size:8.5px;
+  letter-spacing:0.22em;color:var(--gold-lt);
+  background:rgba(201,148,58,0.13);
+  border:1px solid rgba(201,148,58,0.35);
+  padding:2px 8px;border-radius:10px;
+}
+.best-icon{
+  width:32px;height:32px;
+  margin-bottom:0.2rem;
+  color:var(--gold-lt);
+  filter:drop-shadow(0 0 8px rgba(201,148,58,0.45));
+}
+.best-icon svg{width:100%;height:100%;display:block}
+/* Hide the gold SVG icon on cards that have a background image — figure becomes the visual */
+.best-card[style*="--card-bg"] .best-icon{display:none}
+.best-title{
+  font-family:'Cinzel',serif;
+  font-size:0.9rem;font-weight:600;
+  color:var(--cream);line-height:1.3;
+}
+.best-desc{
+  font-size:0.88rem;color:var(--cream-dim);
+  font-style:italic;line-height:1.5;
+}
+.best-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:0.7rem;padding-top:0.7rem;
+  border-top:1px solid var(--border);
+  gap:0.7rem;
+}
+.best-price{
+  font-family:'Cinzel',serif;
+  font-size:1.15rem;font-weight:700;
+  color:var(--gold-lt);
+  letter-spacing:0.02em;
+}
+.best-cta{
+  font-family:'Cinzel',serif;font-size:0.78rem;
+  color:var(--gold);letter-spacing:0.1em;
+  white-space:nowrap;
+  text-decoration:none;
+  transition:color .2s;
+}
+.best-cta:hover{color:var(--gold-lt)}
+
+/* Preview PDF button — small, elegant, sits inside each card */
+.best-pdf{
+  display:inline-flex;align-items:center;gap:5px;
+  align-self:flex-start;
+  font-family:'Cinzel',serif;font-size:0.62rem;
+  color:var(--gold);
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  text-decoration:none;
+  padding:5px 10px;
+  border:1px solid rgba(201,148,58,0.45);
+  border-radius:14px;
+  background:rgba(13,8,10,0.55);
+  backdrop-filter:blur(3px);
+  margin-top:0.5rem;
+  transition:all .25s;
+  white-space:nowrap;
+  position:relative;
+  z-index:3;
+}
+.best-pdf svg{
+  width:11px;height:11px;
+  flex-shrink:0;
+}
+.best-pdf:hover{
+  color:var(--gold-lt);
+  border-color:rgba(232,200,122,0.85);
+  background:rgba(26,11,11,0.75);
+  transform:translateY(-1px);
+}
+
+/* ── ADEPT'S LIBRARY ── */
+.library-card{
+  background:linear-gradient(135deg,#1f0808 0%,#2a0d0d 50%,#1a0606 100%);
+  border:1.5px solid rgba(201,148,58,0.55);
+  border-radius:16px;
+  padding:2.2rem 2rem 1.8rem;
+  margin-bottom:1rem;
+  position:relative;
+  overflow:hidden;
+  text-decoration:none;color:inherit;
+  display:block;
+  transition:border-color .25s,transform .2s;
+}
+.library-card:hover{
+  border-color:rgba(232,200,122,0.85);
+  transform:translateY(-3px);
+}
+.library-card::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 0%, rgba(168,32,32,0.35) 0%,transparent 65%),
+    radial-gradient(ellipse 30% 50% at 100% 100%, rgba(201,148,58,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.library-badge{
+  display:inline-block;
+  font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.32em;
+  background:rgba(201,148,58,0.15);
+  border:1px solid rgba(201,148,58,0.45);
+  color:var(--gold-lt);
+  padding:7px 20px;border-radius:22px;
+  margin-bottom:1.2rem;text-transform:uppercase;
+}
+.library-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(1.3rem,3.8vw,1.85rem);
+  color:var(--gold-lt);
+  margin-bottom:0.6rem;
+  line-height:1.2;
+}
+.library-desc{
+  font-size:1rem;
+  color:var(--cream-dim);
+  line-height:1.65;
+  max-width:540px;
+  margin-bottom:1.4rem;
+}
+.library-pricing{
+  display:flex;align-items:baseline;gap:1.2rem;flex-wrap:wrap;
+  margin-bottom:0.7rem;
+}
+.lib-price-main{
+  font-family:'Cinzel',serif;font-size:1.85rem;font-weight:700;
+  color:var(--cream);
+}
+.lib-price-old{
+  font-family:'Cinzel',serif;font-size:1.85rem;font-weight:700;
+  color:var(--cream);
+  text-decoration:line-through;
+  text-decoration-thickness:2px;
+  text-decoration-color:rgba(232,200,122,0.85);
+  opacity:0.55;
+}
+.library-installments{
+  font-family:'Cinzel',serif;
+  font-size:0.95rem;
+  font-weight:500;
+  color:var(--cream);
+  font-style:normal;
+  margin-bottom:1.4rem;
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  line-height:1.4;
+}
+.library-installments strong{
+  font-weight:700;
+  color:var(--cream);
+}
+.library-savings-line{
+  font-style:italic;
+  font-size:1.02rem;
+  color:var(--gold-lt);
+  margin-bottom:1.2rem;
+  opacity:0.92;
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+}
+.library-savings-line strong{
+  font-family:'Cinzel',serif;
+  font-style:normal;
+  font-weight:700;
+  color:var(--gold-lt);
+}
+.lib-value{
+  font-size:0.8rem;color:var(--gold);
+  background:rgba(201,148,58,0.12);
+  border:1px solid rgba(201,148,58,0.25);
+  padding:4px 10px;border-radius:4px;
+}
+.library-cta{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:0.18em;
+  color:#1a0808;
+  background:linear-gradient(135deg,var(--gold-lt) 0%,var(--gold) 50%,#a8801f 100%);
+  padding:0.75rem 1.8rem;border-radius:6px;
+  text-decoration:none;
+  font-weight:600;
+  transition:filter .2s,transform .2s;
+  box-shadow:0 2px 12px rgba(201,148,58,0.25);
+  text-transform:uppercase;
+}
+.library-cta:hover{filter:brightness(1.15);transform:translateY(-1px)}
+
+/* Library actions row — PDF button next to the Enroll button */
+.library-actions{
+  display:flex;align-items:center;gap:0.9rem;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:2;
+}
+.library-pdf{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Cinzel',serif;font-size:0.72rem;
+  color:var(--gold-lt);
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  text-decoration:none;
+  padding:9px 16px;
+  border:1px solid rgba(201,148,58,0.5);
+  border-radius:6px;
+  background:rgba(13,8,10,0.4);
+  transition:all .25s;
+}
+.library-pdf svg{width:14px;height:14px;flex-shrink:0}
+.library-pdf:hover{
+  color:#fff;
+  border-color:rgba(232,200,122,0.85);
+  background:rgba(168,32,32,0.25);
+  transform:translateY(-1px);
+}
+
+/* ── PATH CARDS (now <details>) ── */
+.paths{display:flex;flex-direction:column;gap:0.9rem;margin-top:1.4rem;margin-bottom:1rem}
+
+.path{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  overflow:hidden;
+  transition:border-color .25s;
+  position:relative;
+}
+.path[open]{border-color:var(--border-h)}
+
+.path-summary{
+  list-style:none;
+  cursor:pointer;
+  padding:1.3rem 1.5rem;
+  display:flex;align-items:center;gap:1rem;
+  position:relative;
+  transition:background .2s;
+  min-height:90px;
+}
+/* When a background image is present → become a banner: bigger, dramatic */
+.path-summary[style*="--card-bg"]{
+  min-height:140px;
+  padding:1.5rem 1.7rem;
+}
+/* Background image layer — full-bleed for banner mode */
+.path-summary::after{
+  content:'';
+  position:absolute;inset:0;
+  background-image:var(--card-bg, none);
+  background-size:cover;
+  background-position:center;
+  opacity:0.85;
+  filter:saturate(1.05) contrast(1);
+  z-index:0;
+  pointer-events:none;
+  transition:opacity .35s ease;
+}
+.path-summary[style*="--card-bg"]::after{
+  opacity:0.85;
+}
+.path-summary:not([style*="--card-bg"])::after{
+  opacity:0.22;
+}
+/* Dark gradient overlay — strongest on the left where text sits, fading right */
+.path-summary::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(90deg, rgba(13,8,10,0.92) 0%, rgba(13,8,10,0.75) 40%, rgba(13,8,10,0.35) 75%, rgba(13,8,10,0.15) 100%);
+  z-index:1;
+  pointer-events:none;
+}
+/* If no image, use the soft uniform overlay so the card still looks consistent */
+.path-summary:not([style*="--card-bg"])::before{
+  background:linear-gradient(90deg, rgba(26,11,11,0.85) 0%, rgba(26,11,11,0.6) 60%, rgba(26,11,11,0.85) 100%);
+}
+.path-summary:hover::after{
+  opacity:1;
+}
+.path-summary:not([style*="--card-bg"]):hover::after{
+  opacity:0.38;
+}
+.path-summary > *{position:relative;z-index:2}
+.path-summary::-webkit-details-marker{display:none}
+.path-summary:hover{background:var(--surface3)}
+
+/* Hide the gold SVG icon when a banner image is present */
+.path-summary[style*="--card-bg"] .path-icon{display:none}
+
+.path-icon{
+  width:34px;height:34px;
+  color:var(--gold-lt);
+  filter:drop-shadow(0 0 8px rgba(201,148,58,0.4));
+  flex-shrink:0;
+}
+.path-icon svg{width:100%;height:100%;display:block}
+.path-head{flex:1;min-width:0}
+.path-title{
+  font-family:'Cinzel',serif;
+  font-size:1.3rem;font-weight:700;
+  color:var(--cream);line-height:1.3;
+  letter-spacing:0.02em;
+  margin-bottom:0.5rem;
+}
+.path-meta{
+  display:flex;gap:0.9rem;align-items:center;flex-wrap:wrap;
+  font-family:'Cinzel',serif;font-size:1.25rem;
+  font-weight:700;
+  color:var(--gold-lt);
+}
+.path-meta s{
+  color:var(--cream-dim);text-decoration:line-through;
+  margin-right:6px;opacity:0.55;font-size:1rem;
+  font-weight:400;
+}
+.path-meta .count{
+  color:var(--cream-dim);
+  font-family:'Cinzel',serif;
+  font-size:0.78rem;
+  font-style:normal;
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+  font-weight:400;
+}
+.chevron{
+  font-size:1.3rem;color:var(--gold);opacity:0.55;
+  transition:transform .3s ease;
+  flex-shrink:0;
+}
+.path[open] .chevron{transform:rotate(90deg);opacity:1}
+
+/* sub-courses inside an opened path */
+.path-body{
+  padding:0.4rem 1rem 1.2rem;
+  border-top:1px solid var(--border);
+  background:rgba(0,0,0,0.18);
+}
+
+.path-bundle-cta{
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(201,148,58,0.07);
+  border:1px dashed rgba(201,148,58,0.32);
+  border-radius:8px;
+  padding:0.85rem 1.1rem;
+  margin:0.7rem 0 0.8rem;
+  text-decoration:none;color:inherit;
+  font-family:'Cinzel',serif;font-size:0.92rem;
+  transition:background .2s,border-color .2s;
+}
+.path-bundle-cta:hover{
+  background:rgba(201,148,58,0.13);
+  border-color:rgba(201,148,58,0.55);
+}
+.path-bundle-cta span:first-child{color:var(--gold-lt);letter-spacing:0.08em;font-weight:600}
+.path-bundle-cta span:last-child{color:var(--gold-lt);font-size:1.2rem;font-weight:700}
+
+/* Pathway PDF preview download — sits ABOVE the bundle CTA inside the expanded body */
+.path-pdf{
+  display:inline-flex;align-items:center;gap:8px;
+  align-self:flex-start;
+  font-family:'Cinzel',serif;font-size:0.68rem;
+  color:var(--gold);
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  text-decoration:none;
+  padding:7px 14px;
+  border:1px solid rgba(201,148,58,0.45);
+  border-radius:18px;
+  background:rgba(13,8,10,0.5);
+  margin-bottom:0.7rem;
+  transition:all .25s;
+}
+.path-pdf svg{width:13px;height:13px;flex-shrink:0}
+.path-pdf:hover{
+  color:var(--gold-lt);
+  border-color:rgba(232,200,122,0.85);
+  background:rgba(26,11,11,0.7);
+  transform:translateY(-1px);
+}
+
+.sub-courses{display:flex;flex-direction:column;gap:0.5rem;margin-top:0.5rem}
+
+.sub-course{
+  display:flex;align-items:center;justify-content:space-between;gap:0.8rem;
+  padding:0.95rem 1.1rem;
+  border-radius:8px;
+  text-decoration:none;color:inherit;
+  background:transparent;
+  border:1px solid transparent;
+  transition:background .2s,border-color .2s,transform .15s;
+}
+.sub-course:hover{
+  background:var(--surface3);
+  border-color:var(--border);
+  transform:translateX(3px);
+}
+.sub-name{
+  font-size:1.08rem;color:var(--cream);
+  line-height:1.4;flex:1;min-width:0;
+  font-weight:500;
+}
+.sub-price{
+  font-family:'Cinzel',serif;font-size:1.05rem;
+  font-weight:700;
+  color:var(--gold-lt);white-space:nowrap;
+}
+.sub-arrow{color:var(--gold);opacity:0.4;font-size:1.1rem;transition:opacity .2s}
+.sub-course:hover .sub-arrow{opacity:1}
+
+/* ── BROWSE ALL CARD ── */
+.single-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:1.4rem 1.6rem;
+  display:flex;align-items:center;gap:1.2rem;
+  text-decoration:none;color:inherit;
+  transition:border-color .25s,background .25s,transform .2s;
+  margin-bottom:1rem;
+}
+.single-card:hover{
+  border-color:var(--border-h);
+  background:var(--surface2);
+  transform:translateY(-2px);
+}
+.single-icon{
+  width:54px;height:54px;min-width:54px;
+  border-radius:10px;
+  background:var(--surface3);
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold-lt);
+  filter:drop-shadow(0 0 6px rgba(201,148,58,0.3));
+}
+.single-icon svg{width:28px;height:28px;display:block}
+.single-body{flex:1;min-width:0}
+.single-title{
+  font-family:'Cinzel',serif;
+  font-size:0.96rem;font-weight:600;
+  color:var(--cream);
+}
+.single-desc{font-size:0.83rem;color:var(--cream-dim);line-height:1.5}
+.single-price{
+  font-family:'Cinzel',serif;
+  font-size:0.88rem;color:var(--gold);
+  white-space:nowrap;
+}
+.single-arrow{
+  font-size:1.05rem;color:var(--gold);opacity:0.4;
+  transition:opacity .2s,transform .2s;margin-left:0.4rem;
+}
+.single-card:hover .single-arrow{opacity:1;transform:translateX(4px)}
+
+/* ── REMINDER ── */
+.reminder{
+  background:rgba(201,148,58,0.06);
+  border:1px dashed rgba(201,148,58,0.32);
+  border-radius:var(--r);
+  padding:1rem 1.3rem;
+  font-size:0.82rem;
+  color:var(--cream-dim);
+  font-style:italic;
+  margin:2rem 0 2.5rem;
+  text-align:center;
+  line-height:1.6;
+}
+.reminder strong{color:var(--gold);font-style:normal}
+.reminder code{
+  background:rgba(201,148,58,0.1);padding:1px 6px;border-radius:3px;
+  font-size:0.85em;color:var(--gold-lt);
+}
+
+/* ── ABOUT ── */
+.about{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:1.8rem;
+  margin-bottom:2.5rem;
+}
+.about-name{
+  font-family:'Cinzel',serif;
+  font-size:0.98rem;color:var(--gold);
+  display:block;margin-bottom:0.7rem;
+  letter-spacing:0.05em;
+}
+.about p{font-size:0.95rem;color:var(--cream-dim);line-height:1.8}
+
+/* ── SPOTIFY SOUND SECTION ── */
+.sound-section{
+  margin:2.5rem auto 2rem;
+  text-align:center;
+}
+
+/* ── FEATURED CHECKOUT EMBED SECTION ── */
+.featured-checkout{
+  margin:3rem auto 2rem;
+  text-align:center;
+}
+.featured-sub{
+  text-align:center;
+  color:var(--cream-dim);
+  font-size:1.05rem;
+  margin-bottom:1.5rem;
+  opacity:0.9;
+}
+.checkout-embed-wrap{
+  max-width:760px;
+  margin:0 auto;
+  padding:1.5rem;
+  border-radius:14px;
+  border:1.5px solid rgba(201,148,58,0.55);
+  background:linear-gradient(135deg,rgba(31,8,8,0.7) 0%,rgba(42,13,13,0.6) 50%,rgba(26,6,6,0.7) 100%);
+  box-shadow:0 8px 32px rgba(168,32,32,0.18), 0 0 0 1px rgba(201,148,58,0.12) inset;
+  position:relative;
+  z-index:5;
+}
+.checkout-embed-wrap .tc-v2-embeddable-target{
+  background:#fff;
+  border-radius:8px;
+  overflow:hidden;
+  min-height:200px;
+}
+.sound-sub{
+  text-align:center;
+  color:var(--cream-dim);
+  font-size:1rem;
+  margin-bottom:1.3rem;
+  opacity:0.85;
+}
+.spotify-embed-wrap{
+  max-width:560px;margin:0 auto;
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid rgba(201,148,58,0.45);
+  box-shadow:0 6px 28px rgba(168,32,32,0.18), 0 0 0 1px rgba(201,148,58,0.12) inset;
+  background:#0a0606;
+}
+.spotify-embed-wrap iframe{
+  display:block;
+  border-radius:14px;
+}
+
+/* ── FLOATING MUSIC BUTTON (bottom-right) ── */
+.music-fab{
+  position:fixed;
+  bottom:24px;right:24px;
+  z-index:80;
+  display:flex;align-items:center;
+  gap:0;
+  background:linear-gradient(135deg, #2a0d0d 0%, #1a0707 100%);
+  border:1.5px solid rgba(201,148,58,0.55);
+  border-radius:30px;
+  padding:0;
+  color:var(--gold-lt);
+  cursor:pointer;
+  font-family:'Cinzel',serif;
+  font-size:0.78rem;letter-spacing:0.18em;
+  text-transform:uppercase;
+  box-shadow:0 6px 24px rgba(0,0,0,0.55), 0 0 18px rgba(201,148,58,0.25);
+  transition:all .35s cubic-bezier(.4,0,.2,1);
+  overflow:hidden;
+  height:54px;
+  width:54px;
+}
+.music-fab:hover{
+  width:170px;
+  border-color:rgba(232,200,122,0.85);
+  box-shadow:0 8px 32px rgba(0,0,0,0.65), 0 0 24px rgba(201,148,58,0.45);
+}
+.music-fab-icon{
+  width:54px;height:54px;
+  flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.music-fab-icon svg{
+  width:22px;height:22px;
+  animation:musicPulse 2.2s ease-in-out infinite;
+}
+@keyframes musicPulse{
+  0%,100%{opacity:0.85;transform:scale(1)}
+  50%    {opacity:1;transform:scale(1.12)}
+}
+.music-fab-label{
+  white-space:nowrap;
+  padding-right:18px;
+  opacity:0;
+  transition:opacity .25s ease .1s;
+}
+.music-fab:hover .music-fab-label{opacity:1}
+
+/* When playing — show the mini-player popup */
+.music-fab-popup{
+  position:fixed;
+  bottom:90px;right:24px;
+  z-index:79;
+  width:340px;
+  max-width:calc(100vw - 48px);
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid rgba(201,148,58,0.55);
+  box-shadow:0 14px 50px rgba(0,0,0,0.7), 0 0 24px rgba(168,32,32,0.25);
+  background:#0a0606;
+  opacity:0;visibility:hidden;
+  transform:translateY(14px) scale(.95);
+  transform-origin:bottom right;
+  transition:opacity .3s ease, transform .3s cubic-bezier(.4,0,.2,1), visibility .3s;
+}
+.music-fab-popup.open{
+  opacity:1;visibility:visible;
+  transform:translateY(0) scale(1);
+}
+.music-fab-popup iframe{
+  display:block;border-radius:14px;
+}
+.music-fab-close{
+  position:absolute;top:6px;right:6px;
+  background:rgba(13,8,10,0.75);
+  border:1px solid rgba(201,148,58,0.4);
+  color:var(--gold-lt);
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  font-size:14px;font-family:serif;
+  z-index:2;
+  transition:background .2s, border-color .2s;
+}
+.music-fab-close:hover{
+  background:rgba(168,32,32,0.4);
+  border-color:rgba(232,200,122,0.7);
+}
+
+/* On mobile — keep the FAB compact and shift positions */
+@media(max-width:520px){
+  .music-fab{bottom:18px;right:18px;height:48px;width:48px}
+  .music-fab:hover{width:48px}
+  .music-fab-label{display:none}
+  .music-fab-popup{bottom:78px;right:18px;width:calc(100vw - 36px)}
+}
+
+/* ── THRIVECART CHECKOUT MODAL ── */
+.checkout-overlay{
+  position:fixed;inset:0;
+  z-index:200;
+  background:rgba(8,4,5,0.88);
+  backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+  opacity:0;visibility:hidden;
+  transition:opacity .35s ease, visibility .35s;
+  overflow-y:auto;
+}
+.checkout-overlay.open{
+  opacity:1;visibility:visible;
+}
+.checkout-modal{
+  background:linear-gradient(135deg,#1f0808 0%,#2a0d0d 50%,#1a0606 100%);
+  border:1.5px solid rgba(201,148,58,0.55);
+  border-radius:18px;
+  padding:2rem 1.6rem 1.6rem;
+  max-width:780px;
+  width:100%;
+  max-height:92vh;
+  overflow-y:auto;
+  position:relative;
+  box-shadow:0 16px 60px rgba(0,0,0,0.7), 0 0 28px rgba(168,32,32,0.28);
+  transform:translateY(20px) scale(0.96);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.checkout-overlay.open .checkout-modal{
+  transform:translateY(0) scale(1);
+}
+.checkout-close{
+  position:absolute;top:14px;right:14px;
+  background:rgba(13,8,10,0.85);
+  border:1px solid rgba(201,148,58,0.5);
+  color:var(--gold-lt);
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  font-size:20px;font-family:serif;
+  z-index:3;
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.checkout-close:hover{
+  background:rgba(168,32,32,0.45);
+  border-color:rgba(232,200,122,0.85);
+  transform:rotate(90deg);
+}
+.checkout-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(1.15rem, 3.5vw, 1.45rem);
+  color:var(--gold-lt);
+  text-align:center;
+  margin:0 0 0.3rem;
+  letter-spacing:0.06em;
+  text-shadow:0 2px 14px rgba(139,26,26,0.5);
+  padding-right:30px;
+}
+.checkout-subtitle{
+  text-align:center;
+  color:var(--cream-dim);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;
+  margin:0 0 1.2rem;
+  opacity:0.85;
+}
+.checkout-slot{
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  min-height:200px;
+  position:relative;
+}
+.checkout-placeholder{
+  padding:3rem 1.5rem;
+  text-align:center;
+  color:#666;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;
+  font-style:italic;
+}
+@media(max-width:520px){
+  .checkout-overlay{padding:0.8rem}
+  .checkout-modal{padding:1.4rem 1rem 1rem;border-radius:14px}
+  .checkout-title{font-size:1.1rem}
+}
+
+/* ── FOOTER ── */
+footer{
+  text-align:center;
+  font-size:0.72rem;color:var(--cream-dim);
+  opacity:0.55;font-style:italic;
+  padding-top:1.5rem;
+  border-top:1px solid var(--border);
+  max-width:620px;
+  margin:0 auto;
+  line-height:1.6;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+.hero        {animation:fadeUp .8s ease both}
+.bestsellers .best-card:nth-child(1){animation:fadeUp .5s .06s ease both}
+.bestsellers .best-card:nth-child(2){animation:fadeUp .5s .12s ease both}
+.bestsellers .best-card:nth-child(3){animation:fadeUp .5s .18s ease both}
+.bestsellers .best-card:nth-child(4){animation:fadeUp .5s .24s ease both}
+.library-card{animation:fadeUp .6s .22s ease both}
+.paths .path:nth-child(1){animation:fadeUp .5s .26s ease both}
+.paths .path:nth-child(2){animation:fadeUp .5s .30s ease both}
+.paths .path:nth-child(3){animation:fadeUp .5s .34s ease both}
+.paths .path:nth-child(4){animation:fadeUp .5s .38s ease both}
+.paths .path:nth-child(5){animation:fadeUp .5s .42s ease both}
+.paths .path:nth-child(6){animation:fadeUp .5s .46s ease both}
+.paths .path:nth-child(7){animation:fadeUp .5s .50s ease both}
+.paths .path:nth-child(8){animation:fadeUp .5s .54s ease both}
+
+@media(max-width:520px){
+  .bestsellers{grid-template-columns:1fr}
+  .single-card{flex-wrap:wrap}
+  .library-pricing{flex-direction:column;gap:.4rem;align-items:flex-start}
+  .library-card{padding:1.8rem 1.4rem}
+  .path-summary{padding:1.1rem 1.2rem}
+  .sub-course{padding:0.65rem 0.75rem}
+}
+
+/* ══════ SOCIALS ══════ */
+.socials{
+  display:flex;justify-content:center;gap:0.85rem;
+  margin:1.5rem 0 0.5rem;
+}
+.social-link{
+  width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:50%;
+  color:var(--gold);
+  text-decoration:none;
+  transition:border-color .25s,background .25s,transform .2s,color .25s;
+}
+.social-link:hover{
+  border-color:rgba(232,200,122,0.8);
+  background:var(--surface3);
+  color:var(--gold-lt);
+  transform:translateY(-3px) scale(1.05);
+}
+.social-link svg{width:19px;height:19px}
+
+/* ══════ POPUP OVERLAY ══════ */
+.popup-overlay{
+  position:fixed;inset:0;
+  background:rgba(13,8,10,0.85);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  z-index:1000;padding:1.5rem;
+  opacity:0;visibility:hidden;
+  transition:opacity .4s ease,visibility .4s ease;
+}
+.popup-overlay.show{opacity:1;visibility:visible}
+
+.popup{
+  background:linear-gradient(135deg,#1f0808 0%,#2a0d0d 50%,#1a0606 100%);
+  border:1.5px solid rgba(201,148,58,0.6);
+  border-radius:16px;
+  padding:2.5rem 2rem 2rem;
+  max-width:440px;width:100%;
+  position:relative;
+  text-align:center;
+  transform:scale(0.9) translateY(20px);
+  transition:transform .4s ease;
+  box-shadow:0 20px 60px rgba(139,26,26,0.4), 0 0 40px rgba(201,148,58,0.15);
+}
+.popup-overlay.show .popup{transform:scale(1) translateY(0)}
+
+.popup::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 80% at 50% 0%, rgba(168,32,32,0.3) 0%,transparent 65%);
+  pointer-events:none;
+  border-radius:16px;
+}
+.popup > *{position:relative;z-index:1}
+
+.popup-close{
+  position:absolute;top:12px;right:14px;
+  width:32px;height:32px;
+  background:transparent;border:none;
+  color:var(--cream-dim);font-size:1.3rem;
+  cursor:pointer;border-radius:50%;
+  transition:color .2s,background .2s;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+}
+.popup-close:hover{color:var(--gold);background:rgba(201,148,58,0.1)}
+
+.popup-icon{
+  width:48px;height:48px;margin:0 auto 1rem;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold-lt);
+  filter:drop-shadow(0 0 12px rgba(201,148,58,0.6));
+}
+.popup-icon svg{width:100%;height:100%;display:block}
+
+.popup-badge{
+  display:inline-block;
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.32em;
+  background:rgba(201,148,58,0.18);
+  border:1px solid rgba(201,148,58,0.5);
+  color:var(--gold-lt);
+  padding:5px 16px;border-radius:20px;
+  margin-bottom:0.9rem;text-transform:uppercase;
+}
+
+.popup-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:1.6rem;color:var(--gold-lt);
+  margin-bottom:0.5rem;line-height:1.2;
+}
+.popup-title em{color:var(--cream);font-style:normal}
+
+.popup-desc{
+  font-size:0.95rem;color:var(--cream-dim);
+  line-height:1.6;margin-bottom:1.4rem;
+  font-style:italic;
+}
+
+.popup-form{display:flex;flex-direction:column;gap:0.7rem}
+
+.popup-input{
+  width:100%;
+  padding:0.85rem 1rem;
+  background:rgba(0,0,0,0.4);
+  border:1px solid rgba(201,148,58,0.3);
+  border-radius:8px;
+  color:var(--cream);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;
+  outline:none;
+  transition:border-color .2s,background .2s;
+}
+.popup-input::placeholder{color:var(--cream-dim);font-style:italic}
+.popup-input:focus{
+  border-color:var(--gold);
+  background:rgba(0,0,0,0.55);
+}
+
+.popup-submit{
+  font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:0.18em;
+  color:#1a0808;
+  background:linear-gradient(135deg,var(--gold-lt) 0%,var(--gold) 50%,#a8801f 100%);
+  border:none;
+  padding:0.85rem 1.4rem;border-radius:8px;
+  cursor:pointer;
+  font-weight:600;text-transform:uppercase;
+  transition:filter .2s,transform .2s;
+  box-shadow:0 2px 12px rgba(201,148,58,0.3);
+}
+.popup-submit:hover{filter:brightness(1.15);transform:translateY(-1px)}
+
+.popup-fineprint{
+  font-size:0.75rem;color:var(--cream-dim);
+  opacity:0.6;margin-top:0.8rem;font-style:italic;
+}
+
+.popup-success{
+  display:none;
+  padding:1rem;
+  background:rgba(201,148,58,0.1);
+  border:1px solid rgba(201,148,58,0.4);
+  border-radius:8px;
+  color:var(--gold-lt);
+  font-size:0.95rem;
+  font-style:italic;
+}
+.popup-success.show{display:block}
+</style>
+</head>
+<body>
+
+<div class="bg-canvas"></div>
+<div class="mist"></div>
+<div class="embers" aria-hidden="true">
+  <span class="ember-particle fire"></span>
+  <span class="ember-particle fire"></span>
+  <span class="ember-particle ash"></span>
+  <span class="ember-particle spark"></span>
+  <span class="ember-particle fire"></span>
+  <span class="ember-particle ash"></span>
+  <span class="ember-particle fire"></span>
+  <span class="ember-particle spark"></span>
+  <span class="ember-particle ash"></span>
+  <span class="ember-particle fire"></span>
+  <span class="ember-particle spark"></span>
+  <span class="ember-particle ash"></span>
+  <span class="ember-particle fire"></span>
+  <span class="ember-particle spark"></span>
+  <span class="ember-particle ash"></span>
+  <span class="ember-particle fire"></span>
+  <span class="ember-particle spark"></span>
+  <span class="ember-particle ash"></span>
+  <span class="ember-particle fire"></span>
+  <span class="ember-particle ash"></span>
+</div>
+
+<div class="wrap">
+
+  <!-- ══════ HERO ══════ -->
+  <header class="hero">
+    <div class="seal" aria-hidden="true">
+      <!-- Twinkling stars around -->
+      <span class="star-spark s1"></span>
+      <span class="star-spark s2"></span>
+      <span class="star-spark s3"></span>
+      <span class="star-spark s4"></span>
+      <span class="star-spark s5"></span>
+      <span class="star-spark s6"></span>
+
+      <!-- All-Seeing Eye in Triangle inside Alchemical Circle -->
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="eyeIris" cx="50%" cy="50%">
+            <stop offset="0%"  stop-color="#FFEEC4"/>
+            <stop offset="30%" stop-color="#FFC966"/>
+            <stop offset="70%" stop-color="#C9943A"/>
+            <stop offset="100%" stop-color="#7A5A1E"/>
+          </radialGradient>
+          <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"  stop-color="#E8C87A"/>
+            <stop offset="50%" stop-color="#C9943A"/>
+            <stop offset="100%" stop-color="#7A5A1E"/>
+          </linearGradient>
+        </defs>
+
+        <!-- ═══ OUTER ROTATING RING ═══ -->
+        <g class="sigil-outer">
+          <!-- Outer thin circle -->
+          <circle cx="100" cy="100" r="92" stroke="url(#goldLine)" stroke-width="0.8" opacity="0.5"/>
+          <!-- Main ring -->
+          <circle cx="100" cy="100" r="86" stroke="#C9943A" stroke-width="1.2" opacity="0.8"/>
+          <!-- Inner ring (boundary of dotted) -->
+          <circle cx="100" cy="100" r="80" stroke="#C9943A" stroke-width="0.6" opacity="0.5"/>
+
+          <!-- Dotted ring of small circles (zodiac/alchemical markers) -->
+          <g opacity="0.85">
+            <circle cx="100" cy="14"  r="1.8" fill="#E8C87A"/>
+            <circle cx="143" cy="25.5" r="1.4" fill="#C9943A"/>
+            <circle cx="174.5" cy="57" r="1.4" fill="#C9943A"/>
+            <circle cx="186" cy="100" r="1.8" fill="#E8C87A"/>
+            <circle cx="174.5" cy="143" r="1.4" fill="#C9943A"/>
+            <circle cx="143" cy="174.5" r="1.4" fill="#C9943A"/>
+            <circle cx="100" cy="186" r="1.8" fill="#E8C87A"/>
+            <circle cx="57" cy="174.5" r="1.4" fill="#C9943A"/>
+            <circle cx="25.5" cy="143" r="1.4" fill="#C9943A"/>
+            <circle cx="14" cy="100" r="1.8" fill="#E8C87A"/>
+            <circle cx="25.5" cy="57" r="1.4" fill="#C9943A"/>
+            <circle cx="57" cy="25.5" r="1.4" fill="#C9943A"/>
+          </g>
+
+          <!-- Cardinal alchemical symbols at 4 directions -->
+          <!-- TOP: small star/cross -->
+          <g transform="translate(100,28)" opacity="0.9">
+            <path d="M 0 -5 L 1.2 -1.5 L 5 -1.5 L 2 1 L 3 5 L 0 2.8 L -3 5 L -2 1 L -5 -1.5 L -1.2 -1.5 Z" fill="#E8C87A"/>
+          </g>
+          <!-- RIGHT: circle with line (Earth symbol) -->
+          <g transform="translate(172,100)" opacity="0.85">
+            <circle cx="0" cy="0" r="5" stroke="#C9943A" stroke-width="0.8" fill="none"/>
+            <line x1="-5" y1="0" x2="5" y2="0" stroke="#C9943A" stroke-width="0.8"/>
+            <line x1="0" y1="-5" x2="0" y2="5" stroke="#C9943A" stroke-width="0.8"/>
+          </g>
+          <!-- BOTTOM: small ankh-like symbol -->
+          <g transform="translate(100,172)" opacity="0.85">
+            <circle cx="0" cy="-2" r="2.5" stroke="#C9943A" stroke-width="0.8" fill="none"/>
+            <line x1="0" y1="0.5" x2="0" y2="5" stroke="#C9943A" stroke-width="0.8"/>
+            <line x1="-2.5" y1="2.5" x2="2.5" y2="2.5" stroke="#C9943A" stroke-width="0.8"/>
+          </g>
+          <!-- LEFT: zodiac-style hook -->
+          <g transform="translate(28,100)" opacity="0.85">
+            <path d="M -4 -3 Q 0 -3 0 0 Q 0 3 4 3" stroke="#C9943A" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+          </g>
+        </g>
+
+        <!-- ═══ INNER COUNTER-ROTATING RING ═══ -->
+        <g class="sigil-inner-ring">
+          <circle cx="100" cy="100" r="68" stroke="#C9943A" stroke-width="0.6" opacity="0.45" stroke-dasharray="2 4"/>
+          <!-- Small runes on inner ring at offset positions -->
+          <g opacity="0.75">
+            <circle cx="100" cy="32"  r="1" fill="#E8C87A"/>
+            <circle cx="148" cy="52"  r="1" fill="#E8C87A"/>
+            <circle cx="168" cy="100" r="1" fill="#E8C87A"/>
+            <circle cx="148" cy="148" r="1" fill="#E8C87A"/>
+            <circle cx="100" cy="168" r="1" fill="#E8C87A"/>
+            <circle cx="52"  cy="148" r="1" fill="#E8C87A"/>
+            <circle cx="32"  cy="100" r="1" fill="#E8C87A"/>
+            <circle cx="52"  cy="52"  r="1" fill="#E8C87A"/>
+          </g>
+        </g>
+
+        <!-- ═══ TRIANGLE (centered) ═══ -->
+        <g class="sigil-triangle">
+          <!-- Triangle outline -->
+          <polygon points="100,42 148,128 52,128"
+                   stroke="#C9943A" stroke-width="1.5"
+                   fill="rgba(139,26,26,0.12)" stroke-linejoin="round"/>
+          <!-- Inner triangle hint -->
+          <polygon points="100,52 142,124 58,124"
+                   stroke="#E8C87A" stroke-width="0.5"
+                   fill="none" opacity="0.5" stroke-linejoin="round"/>
+        </g>
+
+        <!-- ═══ ALL-SEEING EYE (center) ═══ -->
+        <g class="sigil-eye">
+          <!-- Eye almond shape outline -->
+          <path d="M 70 100 Q 100 78 130 100 Q 100 122 70 100 Z"
+                stroke="#C9943A" stroke-width="1.4"
+                fill="#1A0707" stroke-linejoin="round"/>
+
+          <!-- Iris (glowing gold) -->
+          <circle class="sigil-iris" cx="100" cy="100" r="10" fill="url(#eyeIris)"/>
+
+          <!-- Pupil -->
+          <circle cx="100" cy="100" r="4" fill="#1A0707"/>
+
+          <!-- Pupil highlight -->
+          <circle cx="102" cy="98" r="1.5" fill="#FFEEC4" opacity="0.9"/>
+
+          <!-- Subtle eyelash hints -->
+          <path d="M 70 100 Q 100 80 130 100" stroke="#E8C87A" stroke-width="0.7" fill="none" opacity="0.6"/>
+        </g>
+
+      </svg>
+    </div>
+
+    <h1>Sentire <em>Occulta</em></h1>
+    <p class="tagline">A doorway to the authentic Occult work of Baal Kadmon: nearly 40 years of Esoteric Mastery, drawn from the Primary Sources.</p>
+
+    <!-- ══════ SOCIAL LINKS ══════ -->
+    <div class="socials">
+      <a href="https://www.instagram.com/sentireoccultacourses" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a href="https://www.tiktok.com/@sentireoccultacourses" class="social-link" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.66a8.16 8.16 0 0 0 4.77 1.52V6.79a4.85 4.85 0 0 1-1.84-.1z"/>
+        </svg>
+      </a>
+      <a href="https://open.spotify.com/track/1eTDS5pniuw7otJd9rG6ud" class="social-link" target="_blank" rel="noopener" aria-label="Spotify">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.59 14.41c-.2.32-.62.42-.94.22-2.58-1.58-5.83-1.93-9.65-1.06-.37.08-.74-.15-.82-.52-.08-.37.15-.74.52-.82 4.18-.95 7.78-.55 10.66 1.22.32.2.42.62.23.94zm1.23-2.71c-.25.4-.78.53-1.18.28-2.95-1.81-7.44-2.34-10.93-1.28-.45.14-.93-.12-1.07-.57-.13-.45.12-.93.57-1.07 4.0-1.21 8.94-.62 12.34 1.46.4.25.53.78.27 1.18zm.11-2.83C14.4 9.04 8.66 8.84 5.36 9.84c-.54.16-1.11-.14-1.27-.68-.16-.54.14-1.11.68-1.27C8.55 6.82 14.92 7.06 19.04 9.51c.49.29.65.92.36 1.41-.29.49-.92.65-1.41.36z"/>
+        </svg>
+      </a>
+      <a href="https://www.youtube.com/@SentireOccultaCourses" class="social-link" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="ornament"><span>✦ &nbsp; ☩ &nbsp; ✦</span></div>
+  </header>
+
+
+  <!-- ══════ BESTSELLERS ══════ -->
+  <h2 class="sect-big">
+    Bestselling Courses
+  </h2>
+  <div class="bestsellers">
+    <div class="best-card" data-href="https://sentireoccultacourses--occultcourses.thrivecart.com/lilith/" style="--card-bg:url('images/Lilith.png')">
+      <span class="best-tag">Bestseller</span>
+      <div class="best-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6 A 12 12 0 1 0 22 26 A 9 9 0 1 1 22 6 Z" fill="currentColor" fill-opacity="0.25"/></svg></div>
+      <div class="best-title">Lilith Transcendent</div>
+      <div class="best-desc">Was it Eve, or Lilith, the first woman?</div>
+      <a href="info/Lilith.png" class="best-pdf" target="_blank" rel="noopener" download>
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+        <span>INFO</span>
+      </a>
+      <div class="best-bottom">
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/lilith/" class="best-cta" target="_blank" rel="noopener">Enroll →</a>
+        <span class="best-price">$197</span>
+      </div>
+    </div>
+
+    <div class="best-card" data-href="https://sentireoccultacourses--occultcourses.thrivecart.com/hekate/" style="--card-bg:url('images/Hekate.png')">
+      <span class="best-tag">Bestseller</span>
+      <div class="best-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8 A 6 6 0 1 0 8 24 A 4.5 4.5 0 1 1 8 8 Z" fill="currentColor" fill-opacity="0.22"/><circle cx="16" cy="16" r="4.5" fill="currentColor" fill-opacity="0.32"/><path d="M24 8 A 6 6 0 1 1 24 24 A 4.5 4.5 0 1 0 24 8 Z" fill="currentColor" fill-opacity="0.22"/></svg></div>
+      <div class="best-title">The Torch of Hekate</div>
+      <div class="best-desc">Meet the goddess at the crossroads.</div>
+      <a href="info/Hekate.png" class="best-pdf" target="_blank" rel="noopener" download>
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+        <span>INFO</span>
+      </a>
+      <div class="best-bottom">
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/hekate/" class="best-cta" target="_blank" rel="noopener">Enroll →</a>
+        <span class="best-price">$197</span>
+      </div>
+    </div>
+
+    <div class="best-card" data-href="https://sentireoccultacourses--occultcourses.thrivecart.com/72demons/" style="--card-bg:url('images/72_Demons.png')">
+      <span class="best-tag">Bestseller</span>
+      <div class="best-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 V 28"/><path d="M8 8 V 14 Q 8 18 12 18"/><path d="M24 8 V 14 Q 24 18 20 18"/><path d="M16 4 L 12 7 M 16 4 L 20 7"/><circle cx="16" cy="22" r="1.5" fill="currentColor"/></svg></div>
+      <div class="best-title">The 72 Demons of the Name</div>
+      <div class="best-desc">Call upon the demons of the Name.</div>
+      <a href="info/72_Demons.png" class="best-pdf" target="_blank" rel="noopener" download>
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+        <span>INFO</span>
+      </a>
+      <div class="best-bottom">
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/72demons/" class="best-cta" target="_blank" rel="noopener">Enroll →</a>
+        <span class="best-price">$207</span>
+      </div>
+    </div>
+
+    <div class="best-card" data-href="https://sentireoccultacourses--occultcourses.thrivecart.com/72angels/" style="--card-bg:url('images/72_Angels.png')">
+      <span class="best-tag">Bestseller</span>
+      <div class="best-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5 V27"/><path d="M16 8 C10 10 6 15 5 22 C10 21 14 18 16 14" fill="currentColor" fill-opacity="0.16"/><path d="M16 8 C22 10 26 15 27 22 C22 21 18 18 16 14" fill="currentColor" fill-opacity="0.16"/><circle cx="16" cy="6" r="2.2"/></svg></div>
+      <div class="best-title">The 72 Angels of the Shemhamephorash</div>
+      <div class="best-desc">Work with the 72 angels of the Name.</div>
+      <a href="info/72_Angels.png" class="best-pdf" target="_blank" rel="noopener" download>
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+        <span>INFO</span>
+      </a>
+      <div class="best-bottom">
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/72angels/" class="best-cta" target="_blank" rel="noopener">Enroll →</a>
+        <span class="best-price">$172</span>
+      </div>
+    </div>
+
+    <div class="best-card" data-href="https://sentireoccultacourses--occultcourses.thrivecart.com/egypt/" style="--card-bg:url('images/Egypt.png')">
+      <span class="best-tag">Bestseller</span>
+      <div class="best-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 L28 27 H4 Z" fill="currentColor" fill-opacity="0.18"/><path d="M16 4 L16 27" opacity="0.6"/><path d="M10 17 H22" opacity="0.7"/><circle cx="16" cy="13" r="2.4" fill="currentColor" fill-opacity="0.35"/></svg></div>
+      <div class="best-title">Ancient Egypt: History, Hieroglyphs &amp; Magick</div>
+      <div class="best-desc">Explore the magick of the Nile.</div>
+      <a href="info/Egypt.png" class="best-pdf" target="_blank" rel="noopener" download>
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+        <span>INFO</span>
+      </a>
+      <div class="best-bottom">
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/egypt/" class="best-cta" target="_blank" rel="noopener">Enroll →</a>
+        <span class="best-price">$187</span>
+      </div>
+    </div>
+
+    <div class="best-card" data-href="https://sentireoccultacourses--occultcourses.thrivecart.com/meditation/" style="--card-bg:url('images/Meditation.png')">
+      <span class="best-tag">Bestseller</span>
+      <div class="best-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="16" cy="16" r="13" opacity="0.5"/><circle cx="16" cy="16" r="8" opacity="0.7"/><circle cx="16" cy="16" r="3.5" fill="currentColor" stroke="none"/></svg></div>
+      <div class="best-title">Meditation Made Accessible</div>
+      <div class="best-desc">The foundation under every ritual.</div>
+      <a href="info/Meditation.png" class="best-pdf" target="_blank" rel="noopener" download>
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+        <span>INFO</span>
+      </a>
+      <div class="best-bottom">
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/meditation/" class="best-cta" target="_blank" rel="noopener">Enroll →</a>
+        <span class="best-price">$34.95</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ══════ ADEPT'S LIBRARY ══════ -->
+  <p class="sect sect-spacer">The Complete Collection</p>
+  <div class="library-card" data-href="https://sentireoccultacourses--occultcourses.thrivecart.com/adeptslibrary/">
+    <span class="library-badge">✦ &nbsp; Best Value &nbsp; ✦</span>
+    <div class="library-title">The Adept's Library</div>
+    <p class="library-desc">Every course in the catalog. All thirty-plus programs. All eight pathways. Lifetime access. The complete body of work drawn from original Hebrew, Aramaic, Greek, and Latin sources: Kabbalah, demonology, the ancient Near East, Angels, and Goddesses.</p>
+    <p class="library-savings-line">A <strong>$2,843</strong> saving: yours for the taking.</p>
+
+    <div class="library-pricing">
+      <span class="lib-price-old">$4,062</span>
+      <span class="lib-price-main">$1,218</span>
+    </div>
+    <p class="library-installments">Or <strong>4 payments</strong> of <strong>$304.50</strong></p>
+
+    <div class="library-actions">
+      <a href="info/Adepts_Library.png" class="library-pdf" target="_blank" rel="noopener" download>
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+        <span>INFO</span>
+      </a>
+      <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/adeptslibrary/" class="library-cta" target="_blank" rel="noopener">Open the Library &nbsp; →</a>
+    </div>
+  </div>
+
+
+  <!-- ══════ THE 8 PATHS ══════ -->
+  <h2 class="sect-big" style="margin-top:3rem">The Eight Pathways</h2>
+  <p class="sect-big-sub"><em>Click to see the courses inside each pathway.</em></p>
+  <div class="paths">
+
+    <!-- 1. FOUNDATION BUILDER -->
+    <details class="path">
+      <summary class="path-summary" style="--card-bg:url('images/Foundation.png')">
+        <div class="path-icon"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L 17 5 L 29 11 L 29 13 L 5 13 Z" fill="currentColor" fill-opacity="0.22"/><line x1="9" y1="13" x2="9" y2="26"/><line x1="14" y1="13" x2="14" y2="26"/><line x1="20" y1="13" x2="20" y2="26"/><line x1="25" y1="13" x2="25" y2="26"/><path d="M4 26 H 30" stroke-width="1.6"/><path d="M3 29 H 31" stroke-width="1.6"/></svg></div>
+        <div class="path-head">
+          <div class="path-title">The Foundation Builder</div>
+          <div class="path-meta">
+            <span><s>$591</s> $355</span>
+            <span class="count">· 4 COURSES INSIDE</span>
+          </div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="path-body">
+        <a href="info/Foundation.png" class="path-pdf" target="_blank" rel="noopener" download>
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+          <span>INFO</span>
+        </a>
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/pathway1/" class="path-bundle-cta" target="_blank" rel="noopener">
+          <span>✦ &nbsp; Buy the whole bundle: $355</span>
+          <span>→</span>
+        </a>
+        <div class="sub-courses">
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/meditation/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Meditation Made Accessible</span>
+            <span class="sub-price">$34.95</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/72angels/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The 72 Angels of the Shemhamephorash</span>
+            <span class="sub-price">$172</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/hebrew/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The Magician's Alphabet</span>
+            <span class="sub-price">$187</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/sefer/68c5bb93f6b63/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The Breath That Forms Worlds <em style="color:var(--cream-dim);font-size:0.8em">(Sefer Yetzirah)</em></span>
+            <span class="sub-price">$197</span>
+            <span class="sub-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </details>
+
+    <!-- 2. SHADOW FEMININE -->
+    <details class="path">
+      <summary class="path-summary" style="--card-bg:url('images/Shadow.png')">
+        <div class="path-icon"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6 A 12 12 0 1 0 24 28 A 8.5 8.5 0 1 1 24 6 Z" fill="currentColor" fill-opacity="0.32"/><circle cx="11" cy="13" r="0.8" fill="currentColor"/><circle cx="9" cy="20" r="0.7" fill="currentColor"/></svg></div>
+        <div class="path-head">
+          <div class="path-title">The Shadow Feminine Journey</div>
+          <div class="path-meta">
+            <span><s>$505</s> $303</span>
+            <span class="count">· 5 COURSES INSIDE</span>
+          </div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="path-body">
+        <a href="info/Shadow.png" class="path-pdf" target="_blank" rel="noopener" download>
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+          <span>INFO</span>
+        </a>
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/shadowpath/" class="path-bundle-cta" target="_blank" rel="noopener">
+          <span>✦ &nbsp; Buy the whole bundle: $303</span>
+          <span>→</span>
+        </a>
+        <div class="sub-courses">
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/ereshkigal/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Embracing the Shadow <em style="color:var(--cream-dim);font-size:0.8em">(Ereshkigal)</em></span>
+            <span class="sub-price">$47</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/kali/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Encounters with Kali</span>
+            <span class="sub-price">$57</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/medusa/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The Gorgon's Gaze <em style="color:var(--cream-dim);font-size:0.8em">(Medusa)</em></span>
+            <span class="sub-price">$57</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/naamah/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Naamah, Mother of Demons</span>
+            <span class="sub-price">$147</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/lilith/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Lilith Transcendent</span>
+            <span class="sub-price">$197</span>
+            <span class="sub-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </details>
+
+    <!-- 3. LIGHT FEMININE -->
+    <details class="path">
+      <summary class="path-summary" style="--card-bg:url('images/Light.png')">
+        <div class="path-icon"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="17" cy="17" r="6" fill="currentColor" fill-opacity="0.28"/><line x1="17" y1="3" x2="17" y2="7"/><line x1="17" y1="27" x2="17" y2="31"/><line x1="3" y1="17" x2="7" y2="17"/><line x1="27" y1="17" x2="31" y2="17"/><line x1="7.5" y1="7.5" x2="10" y2="10"/><line x1="24" y1="24" x2="26.5" y2="26.5"/><line x1="26.5" y1="7.5" x2="24" y2="10"/><line x1="10" y1="24" x2="7.5" y2="26.5"/></svg></div>
+        <div class="path-head">
+          <div class="path-title">The Light Feminine Journey</div>
+          <div class="path-meta">
+            <span><s>$495</s> $297</span>
+            <span class="count">· 5 COURSES INSIDE</span>
+          </div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="path-body">
+        <a href="info/Light.png" class="path-pdf" target="_blank" rel="noopener" download>
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+          <span>INFO</span>
+        </a>
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/light/" class="path-bundle-cta" target="_blank" rel="noopener">
+          <span>✦ &nbsp; Buy the whole bundle: $297</span>
+          <span>→</span>
+        </a>
+        <div class="sub-courses">
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/inanna/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The Inanna Experience</span>
+            <span class="sub-price">$47</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/abundantia/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Abundantia: Goddess of Plenty</span>
+            <span class="sub-price">$47</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/mary/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Mother Mary Across Time and Tradition</span>
+            <span class="sub-price">$127</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/circe/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Circe Unveiled</span>
+            <span class="sub-price">$127</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/lakshmi/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Lakshmi's Wealth</span>
+            <span class="sub-price">$147</span>
+            <span class="sub-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </details>
+
+    <!-- 4. DEMONOLOGIST -->
+    <details class="path">
+      <summary class="path-summary" style="--card-bg:url('images/Demonologist.png')">
+        <div class="path-icon"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><circle cx="17" cy="17" r="13" stroke-width="1.2"/><polygon points="17,29 9,14 25,14 11.5,23 22.5,23" fill="currentColor" fill-opacity="0.28"/></svg></div>
+        <div class="path-head">
+          <div class="path-title">The Demonologist's Curriculum</div>
+          <div class="path-meta">
+            <span><s>$1,017</s> $610</span>
+            <span class="count">· 6 COURSES INSIDE</span>
+          </div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="path-body">
+        <a href="info/Demonologist.png" class="path-pdf" target="_blank" rel="noopener" download>
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+          <span>INFO</span>
+        </a>
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/demonologist/" class="path-bundle-cta" target="_blank" rel="noopener">
+          <span>✦ &nbsp; Buy the whole bundle: $610</span>
+          <span>→</span>
+        </a>
+        <div class="sub-courses">
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/lucifer/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Lost in Translation: The Lucifer Fallacy</span>
+            <span class="sub-price">$132</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/asmodeus/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Asmodeus, King of Demons</span>
+            <span class="sub-price">$137</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/pazuzu/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Summoning the Wind <em style="color:var(--cream-dim);font-size:0.8em">(Pazuzu)</em></span>
+            <span class="sub-price">$147</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/the-watchers/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The Watchers</span>
+            <span class="sub-price">$197</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/jinn/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Spirits in the Sand <em style="color:var(--cream-dim);font-size:0.8em">(Jinn)</em></span>
+            <span class="sub-price">$197</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/72demons/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The 72 Demons of the Name</span>
+            <span class="sub-price">$207</span>
+            <span class="sub-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </details>
+
+    <!-- 5. CELESTIAL OPERATOR -->
+    <details class="path">
+      <summary class="path-summary" style="--card-bg:url('images/Celestial.png')">
+        <div class="path-icon"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><polygon points="17,4 19,15 30,17 19,19 17,30 15,19 4,17 15,15" fill="currentColor" fill-opacity="0.32"/><circle cx="17" cy="17" r="2" fill="currentColor"/></svg></div>
+        <div class="path-head">
+          <div class="path-title">The Celestial Operator</div>
+          <div class="path-meta">
+            <span><s>$626</s> $382</span>
+            <span class="count">· 5 COURSES INSIDE</span>
+          </div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="path-body">
+        <a href="info/Celestial.png" class="path-pdf" target="_blank" rel="noopener" download>
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+          <span>INFO</span>
+        </a>
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/celestial/" class="path-bundle-cta" target="_blank" rel="noopener">
+          <span>✦ &nbsp; Buy the whole bundle: $382</span>
+          <span>→</span>
+        </a>
+        <div class="sub-courses">
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/metatron/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Archangel Metatron <em style="color:var(--cream-dim);font-size:0.8em">(Mini Program)</em></span>
+            <span class="sub-price">$40</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/raziel/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Tap Into the Wisdom of Archangel Raziel</span>
+            <span class="sub-price">$40</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/72angels/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The 72 Angels of the Shemhamephorash</span>
+            <span class="sub-price">$172</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/sacredscribe/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Sacred Scribe: The Angel Metatron</span>
+            <span class="sub-price">$187</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/the-watchers/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The Watchers</span>
+            <span class="sub-price">$197</span>
+            <span class="sub-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </details>
+
+    <!-- 6. ABUNDANCE -->
+    <details class="path">
+      <summary class="path-summary" style="--card-bg:url('images/Abundance.png')">
+        <div class="path-icon"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="17" cy="17" rx="4" ry="9" fill="currentColor" fill-opacity="0.28"/><ellipse cx="17" cy="17" rx="9" ry="4" fill="currentColor" fill-opacity="0.28"/><ellipse cx="17" cy="17" rx="4" ry="9" transform="rotate(45 17 17)" fill="currentColor" fill-opacity="0.24"/><ellipse cx="17" cy="17" rx="4" ry="9" transform="rotate(-45 17 17)" fill="currentColor" fill-opacity="0.24"/><circle cx="17" cy="17" r="2.5" fill="currentColor"/></svg></div>
+        <div class="path-head">
+          <div class="path-title">The Abundance Alignment</div>
+          <div class="path-meta">
+            <span><s>$291</s> $174</span>
+            <span class="count">· 3 COURSES INSIDE</span>
+          </div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="path-body">
+        <a href="info/Abundance.png" class="path-pdf" target="_blank" rel="noopener" download>
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+          <span>INFO</span>
+        </a>
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/abundance/" class="path-bundle-cta" target="_blank" rel="noopener">
+          <span>✦ &nbsp; Buy the whole bundle: $174</span>
+          <span>→</span>
+        </a>
+        <div class="sub-courses">
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/abundantia/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Abundantia: Goddess of Plenty</span>
+            <span class="sub-price">$47</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/nitika/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The Nitika Codex</span>
+            <span class="sub-price">$97</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/lakshmi/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Lakshmi's Wealth</span>
+            <span class="sub-price">$147</span>
+            <span class="sub-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </details>
+
+    <!-- 7. KABBALISTIC SCHOLAR -->
+    <details class="path">
+      <summary class="path-summary" style="--card-bg:url('images/Kabbalist.png')">
+        <div class="path-icon"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="5" x2="17" y2="29"/><line x1="9" y1="11" x2="17" y2="5"/><line x1="25" y1="11" x2="17" y2="5"/><line x1="9" y1="11" x2="17" y2="17"/><line x1="25" y1="11" x2="17" y2="17"/><line x1="9" y1="23" x2="17" y2="17"/><line x1="25" y1="23" x2="17" y2="17"/><line x1="9" y1="23" x2="17" y2="29"/><line x1="25" y1="23" x2="17" y2="29"/><line x1="9" y1="11" x2="9" y2="23"/><line x1="25" y1="11" x2="25" y2="23"/><circle cx="17" cy="5" r="2" fill="currentColor" fill-opacity="0.5"/><circle cx="9" cy="11" r="2" fill="currentColor" fill-opacity="0.5"/><circle cx="25" cy="11" r="2" fill="currentColor" fill-opacity="0.5"/><circle cx="17" cy="17" r="2" fill="currentColor" fill-opacity="0.5"/><circle cx="9" cy="23" r="2" fill="currentColor" fill-opacity="0.5"/><circle cx="25" cy="23" r="2" fill="currentColor" fill-opacity="0.5"/><circle cx="17" cy="29" r="2" fill="currentColor" fill-opacity="0.5"/></svg></div>
+        <div class="path-head">
+          <div class="path-title">The Kabbalistic Scholar</div>
+          <div class="path-meta">
+            <span><s>$905</s> $543</span>
+            <span class="count">· 6 COURSES INSIDE</span>
+          </div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="path-body">
+        <a href="info/Kabbalist.png" class="path-pdf" target="_blank" rel="noopener" download>
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+          <span>INFO</span>
+        </a>
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/scholar/" class="path-bundle-cta" target="_blank" rel="noopener">
+          <span>✦ &nbsp; Buy the whole bundle: $543</span>
+          <span>→</span>
+        </a>
+        <div class="sub-courses">
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/raziel/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Tap Into the Wisdom of Archangel Raziel</span>
+            <span class="sub-price">$40</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/deadsea/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Echoes of Antiquity <em style="color:var(--cream-dim);font-size:0.8em">(Dead Sea Scrolls)</em></span>
+            <span class="sub-price">$97</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/hebrew/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The Magician's Alphabet</span>
+            <span class="sub-price">$187</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/sacredscribe/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Sacred Scribe: The Angel Metatron</span>
+            <span class="sub-price">$187</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/sefer/68c5bb93f6b63/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The Breath That Forms Worlds <em style="color:var(--cream-dim);font-size:0.8em">(Sefer Yetzirah)</em></span>
+            <span class="sub-price">$197</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/demiurge/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Beyond the Demiurge <em style="color:var(--cream-dim);font-size:0.8em">(Gnosticism)</em></span>
+            <span class="sub-price">$197</span>
+            <span class="sub-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </details>
+
+    <!-- 8. ANCIENT NEAR EAST -->
+    <details class="path">
+      <summary class="path-summary" style="--card-bg:url('images/Near_East.png')">
+        <div class="path-icon"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 28 H 31 V 25 H 27 V 21 H 24 V 17 H 21 V 13 H 18 L 17 9 L 16 13 H 13 V 17 H 10 V 21 H 7 V 25 H 3 Z" fill="currentColor" fill-opacity="0.28"/><circle cx="17" cy="5" r="1.4" fill="currentColor"/></svg></div>
+        <div class="path-head">
+          <div class="path-title">The Ancient Near East Immersion</div>
+          <div class="path-meta">
+            <span><s>$525</s> $315</span>
+            <span class="count">· 5 COURSES INSIDE</span>
+          </div>
+        </div>
+        <div class="chevron">›</div>
+      </summary>
+      <div class="path-body">
+        <a href="info/Near_East.png" class="path-pdf" target="_blank" rel="noopener" download>
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+          <span>INFO</span>
+        </a>
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/neareast/" class="path-bundle-cta" target="_blank" rel="noopener">
+          <span>✦ &nbsp; Buy the whole bundle: $315</span>
+          <span>→</span>
+        </a>
+        <div class="sub-courses">
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/inanna/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">The Inanna Experience</span>
+            <span class="sub-price">$47</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/ereshkigal/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Embracing the Shadow <em style="color:var(--cream-dim);font-size:0.8em">(Ereshkigal)</em></span>
+            <span class="sub-price">$47</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/deadsea/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Echoes of Antiquity <em style="color:var(--cream-dim);font-size:0.8em">(Dead Sea Scrolls)</em></span>
+            <span class="sub-price">$97</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/pazuzu/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Summoning the Wind <em style="color:var(--cream-dim);font-size:0.8em">(Pazuzu)</em></span>
+            <span class="sub-price">$147</span>
+            <span class="sub-arrow">→</span>
+          </a>
+          <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/egypt/" class="sub-course" target="_blank" rel="noopener">
+            <span class="sub-name">Ancient Egypt: History, Hieroglyphs &amp; Magick</span>
+            <span class="sub-price">$187</span>
+            <span class="sub-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </details>
+
+  </div>
+
+
+  <!-- ══════ YOU MIGHT BE INTERESTED IN ══════ -->
+  <p class="sect sect-spacer">You Might Be Interested In</p>
+  <div class="bestsellers">
+
+    <div class="best-card" data-href="https://sentireoccultacourses--occultcourses.thrivecart.com/lucid-dreaming/" style="--card-bg:url('images/Lucid.png')">
+      <div class="best-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6 A 12 12 0 1 0 22 26 A 9 9 0 1 1 22 6 Z" fill="currentColor" fill-opacity="0.2"/><circle cx="24" cy="10" r="0.8" fill="currentColor"/><circle cx="27" cy="14" r="0.6" fill="currentColor"/><circle cx="25" cy="18" r="0.7" fill="currentColor"/></svg></div>
+      <div class="best-title">Lucid Dreaming</div>
+      <div class="best-desc">Master the dream realm.</div>
+      <a href="info/Lucid.png" class="best-pdf" target="_blank" rel="noopener" download>
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+        <span>INFO</span>
+      </a>
+      <div class="best-bottom">
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/lucid-dreaming/" class="best-cta" target="_blank" rel="noopener">Enroll →</a>
+        <span class="best-price">$69.95</span>
+      </div>
+    </div>
+
+    <div class="best-card" data-href="https://sentireoccultacourses--occultcourses.thrivecart.com/divineseeing/" style="--card-bg:url('images/Divine.png')">
+      <div class="best-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16 Q 16 6 28 16 Q 16 26 4 16 Z" fill="currentColor" fill-opacity="0.22"/><circle cx="16" cy="16" r="4" fill="currentColor" fill-opacity="0.45"/><circle cx="16" cy="16" r="1.5" fill="#5C3010" stroke="none"/></svg></div>
+      <div class="best-title">Divine Seeing</div>
+      <div class="best-desc">The sacred art of seeing.</div>
+      <a href="info/Divine.png" class="best-pdf" target="_blank" rel="noopener" download>
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+        <span>INFO</span>
+      </a>
+      <div class="best-bottom">
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/divineseeing/" class="best-cta" target="_blank" rel="noopener">Enroll →</a>
+        <span class="best-price">$57</span>
+      </div>
+    </div>
+
+    <div class="best-card" data-href="https://sentireoccultacourses--occultcourses.thrivecart.com/baphomet/" style="--card-bg:url('images/Baphomet.png')">
+      <div class="best-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="18" r="8" fill="currentColor" fill-opacity="0.22"/><path d="M9 14 L 5 8 M 23 14 L 27 8" stroke-linecap="round"/><circle cx="13" cy="17" r="1" fill="currentColor"/><circle cx="19" cy="17" r="1" fill="currentColor"/><path d="M14 22 Q 16 24 18 22"/></svg></div>
+      <div class="best-title">Baphomet</div>
+      <div class="best-desc">Unveil the sabbatic goat.</div>
+      <a href="info/Baphomet.png" class="best-pdf" target="_blank" rel="noopener" download>
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+        <span>INFO</span>
+      </a>
+      <div class="best-bottom">
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/baphomet/" class="best-cta" target="_blank" rel="noopener">Enroll →</a>
+        <span class="best-price">$97</span>
+      </div>
+    </div>
+
+    <div class="best-card" data-href="https://sentireoccultacourses--occultcourses.thrivecart.com/moses/" style="--card-bg:url('images/Moses.png')">
+      <div class="best-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4 H 24 V 28 H 8 Z" fill="currentColor" fill-opacity="0.2"/><path d="M11 9 H 21 M 11 13 H 21 M 11 17 H 21 M 11 21 H 18" stroke-width="1.1"/></svg></div>
+      <div class="best-title">6th &amp; 7th Books of Moses</div>
+      <div class="best-desc">The forbidden grimoires of seals and sigils.</div>
+      <a href="info/Moses.png" class="best-pdf" target="_blank" rel="noopener" download>
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2 H 11 L 14 5 V 16 H 4 Z" fill="currentColor" fill-opacity="0.12"/><path d="M11 2 V 5 H 14"/><line x1="6" y1="9" x2="12" y2="9"/><line x1="6" y1="12" x2="12" y2="12"/></svg>
+        <span>INFO</span>
+      </a>
+      <div class="best-bottom">
+        <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/moses/" class="best-cta" target="_blank" rel="noopener">Enroll →</a>
+        <span class="best-price">$187</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ══════ INDIVIDUAL COURSES ══════ -->
+  <h2 class="sect-big" style="margin-top:2.8rem">Browse the Full Catalog</h2>
+  <a href="https://sentireoccultacourses--occultcourses.thrivecart.com/occult-courses/69e0db5f01cf3/" class="single-card" target="_blank" rel="noopener">
+    <div class="single-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7 L 15 9 L 15 27 L 4 25 Z" fill="currentColor" fill-opacity="0.18"/><path d="M28 7 L 17 9 L 17 27 L 28 25 Z" fill="currentColor" fill-opacity="0.18"/><path d="M16 8 L 16 27"/><path d="M6 12 L 13 13 M 6 16 L 13 17 M 6 20 L 13 21" stroke-width="1" opacity="0.65"/><path d="M19 13 L 26 12 M 19 17 L 26 16 M 19 21 L 26 20" stroke-width="1" opacity="0.65"/></svg></div>
+    <div class="single-body">
+      <div class="single-title">All 30+ Individual Courses</div>
+    </div>
+    <span class="single-price">$34.95–$207</span>
+    <span class="single-arrow">→</span>
+  </a>
+
+
+  <!-- ══════ ABOUT ══════ -->
+  <div class="about">
+    <span class="about-name">About Baal Kadmon</span>
+    <p>New York-based author, occultist, and scholar of ancient religion with nearly forty years of study and practice. He reads Hebrew, Aramaic, Ancient Greek, and Latin: working directly from primary sources rather than secondhand interpretations. His courses span Kabbalah, demonology, the ancient Near East, angelic traditions, and goddess worship. Rigorous, authentic, transformative.</p>
+  </div>
+
+  <!-- ══════ SPOTIFY — THE SOUND ══════ -->
+  <section class="sound-section">
+    <h2 class="sect-big">The Sound of Sentire Occulta</h2>
+    <p class="sound-sub"><em>Original music to set the mood for your study.</em></p>
+    <div class="spotify-embed-wrap">
+      <iframe
+        src="https://open.spotify.com/embed/track/1eTDS5pniuw7otJd9rG6ud?utm_source=generator&theme=0"
+        width="100%" height="152" frameborder="0"
+        allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        title="Prima Uxor by Sentire Occulta">
+      </iframe>
+    </div>
+  </section>
+
+  <footer>
+    Disclaimer: I am an independent affiliate partner of Baal Kadmon and earn a commission on qualifying purchases made through the links on this page. I do not own, create, or teach the courses listed here. All content, courses, and intellectual property belong to Baal Kadmon and are sold through his official platforms at occultcourses.com.
+  </footer>
+
+</div>
+
+<!-- ══════ FLOATING MUSIC PLAYER ══════ -->
+<button class="music-fab" id="music-fab" aria-label="Listen to Sentire Occulta music">
+  <span class="music-fab-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18V5l12-2v13"/>
+      <circle cx="6" cy="18" r="3"/>
+      <circle cx="18" cy="16" r="3"/>
+    </svg>
+  </span>
+  <span class="music-fab-label">Listen</span>
+</button>
+
+<div class="music-fab-popup" id="music-fab-popup">
+  <button class="music-fab-close" id="music-fab-close" aria-label="Close player">×</button>
+  <iframe
+    id="music-fab-iframe"
+    width="100%" height="152" frameborder="0"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    title="Prima Uxor by Sentire Occulta"
+    data-src="https://open.spotify.com/embed/track/1eTDS5pniuw7otJd9rG6ud?utm_source=generator&theme=0">
+  </iframe>
+</div>
+
+<!-- ══════ THRIVECART CHECKOUT MODAL ══════ -->
+<div class="checkout-overlay" id="checkout-overlay" aria-hidden="true">
+  <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+    <button class="checkout-close" id="checkout-close" aria-label="Close checkout">×</button>
+    <h3 class="checkout-title" id="checkout-title">Complete Your Enrollment</h3>
+    <p class="checkout-subtitle"><em>Secure checkout powered by ThriveCart.</em></p>
+    <div class="checkout-slot" id="checkout-slot">
+      <!-- ThriveCart embed gets injected here based on the slug data attribute on the Enroll button clicked -->
+      <div class="checkout-placeholder">Loading checkout…</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ 10% OFF EMAIL POPUP ══════ -->
+<div class="popup-overlay" id="popup">
+  <div class="popup">
+    <button class="popup-close" id="popup-close" aria-label="Close">×</button>
+    <div class="popup-icon">🌙</div>
+    <span class="popup-badge">✦ &nbsp; May Only &nbsp; ✦</span>
+    <div class="popup-title">Claim Your <em>50% Off</em></div>
+    <p class="popup-desc">For the month of May only. Drop your email below to receive your exclusive 50% discount code on Baal Kadmon's courses, plus monthly esoteric drops, deep dives, and early access to what's next.</p>
+
+    <form class="popup-form" id="popup-form" action="https://formspree.io/f/xqennlra" method="POST">
+      <input
+        class="popup-input"
+        type="email"
+        name="email"
+        placeholder="your@email.com"
+        required
+        autocomplete="email">
+      <button class="popup-submit" type="submit">Claim My 50% Discount →</button>
+    </form>
+
+    <div class="popup-success" id="popup-success">
+      ✨ Your 50% off code is on the way. Check your inbox: and your spam folder, just in case.
+    </div>
+
+    <p class="popup-fineprint">Offer valid May only. No spam. Unsubscribe any time.</p>
+  </div>
+</div>
+
+<script>
+  // ── Floating music player ──
+  (function(){
+    const fab = document.getElementById('music-fab');
+    const popup = document.getElementById('music-fab-popup');
+    const closeBtn = document.getElementById('music-fab-close');
+    const iframe = document.getElementById('music-fab-iframe');
+
+    let opened = false;
+
+    fab.addEventListener('click', () => {
+      // Lazy-load the Spotify iframe only on first open (saves bandwidth)
+      if (!opened) {
+        iframe.src = iframe.dataset.src;
+        opened = true;
+      }
+      popup.classList.toggle('open');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      popup.classList.remove('open');
+    });
+
+    // Click outside to close
+    document.addEventListener('click', (e) => {
+      if (!popup.classList.contains('open')) return;
+      if (popup.contains(e.target) || fab.contains(e.target)) return;
+      popup.classList.remove('open');
+    });
+  })();
+
+  // ── Best-card clickable area (whole card → Enroll, except PDF + Enroll buttons inside) ──
+  (function(){
+    document.querySelectorAll('.best-card[data-href]').forEach(card => {
+      card.addEventListener('click', (e) => {
+        // If user clicked the PDF button or the Enroll link, let those handle it natively
+        if (e.target.closest('.best-pdf') || e.target.closest('.best-cta')) return;
+        window.open(card.dataset.href, '_blank', 'noopener');
+      });
+    });
+  })();
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     LILITH POPUP CHECKOUT — SIMPLE & RELIABLE
+     ───────────────────────────────────────────────────────────────────────
+     Strategy: pre-load the ThriveCart embed into the (hidden) modal so
+     their script can find and render the form on initial page load. Then
+     opening/closing the modal is just CSS show/hide — the form is alive
+     and ready every time.
+     ═══════════════════════════════════════════════════════════════════════ */
+  (function(){
+    const overlay  = document.getElementById('checkout-overlay');
+    const closeBtn = document.getElementById('checkout-close');
+    const slot     = document.getElementById('checkout-slot');
+    const title    = document.getElementById('checkout-title');
+
+    // STEP 1 — Pre-inject the Lilith ThriveCart embed div into the hidden modal.
+    // We do this on page load so ThriveCart's script renders the form once,
+    // then we just toggle the modal's visibility from there.
+    slot.innerHTML = '<div class="tc-v2-embeddable-target" data-thrivecart-account="occultcourses" data-thrivecart-tpl="v2" data-thrivecart-product="66" data-thrivecart-embeddable="tc-occultcourses-66-KFC1NP"></div>';
+
+    // Load the ThriveCart script (only once, in <head>-like position)
+    const tcScript = document.createElement('script');
+    tcScript.async = true;
+    tcScript.src = '//tinder.thrivecart.com/embed/v2/thrivecart.js';
+    tcScript.id = 'tc-occultcourses-66-KFC1NP';
+    document.body.appendChild(tcScript);
+
+    console.log('[Sentire Occulta] ThriveCart Lilith embed pre-loaded into modal');
+
+    // STEP 2 — Intercept clicks on the Lilith Enroll button → open modal
+    function openCheckout(productLabel){
+      title.textContent = productLabel || 'Lilith Transcendent';
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      console.log('[Sentire Occulta] Checkout modal opened for:', productLabel);
+    }
+    function closeCheckout(){
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      console.log('[Sentire Occulta] Checkout modal closed');
+    }
+
+    // Intercept clicks on Lilith Enroll links
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('a[href*="thrivecart.com/lilith/"]');
+      if (!trigger) return;
+      // Only intercept Enroll-style clicks (not other Lilith links that may exist)
+      if (!trigger.matches('.best-cta, .sub-course, .library-cta, .path-bundle-cta')) return;
+      e.preventDefault();
+      e.stopPropagation();
+      openCheckout('Lilith Transcendent');
+    }, true);
+
+    closeBtn.addEventListener('click', closeCheckout);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeCheckout();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeCheckout();
+    });
+  })();
+
+  // ── Hide PDF buttons whose PDF file doesn't exist yet ──
+  // DISABLED FOR NOW so buttons always show. Re-enable once at least some PDFs are uploaded.
+  // To re-enable: uncomment the block below.
+  /*
+  (function(){
+    document.querySelectorAll('.best-pdf, .path-pdf, .library-pdf').forEach(btn => {
+      const url = btn.getAttribute('href');
+      if (!url) return;
+      fetch(url, { method: 'HEAD' })
+        .then(r => { if (!r.ok) btn.style.display = 'none'; })
+        .catch(() => { btn.style.display = 'none'; });
+    });
+  })();
+  */
+</script>
+
+<script>
+  // Show popup 4 seconds after page load (only once per visitor via sessionStorage)
+  (function(){
+    const popup = document.getElementById('popup');
+    const closeBtn = document.getElementById('popup-close');
+    const form = document.getElementById('popup-form');
+    const success = document.getElementById('popup-success');
+
+    // Don't show again if dismissed this session
+    if (!sessionStorage.getItem('sentireOcculta_popupSeen')) {
+      setTimeout(() => popup.classList.add('show'), 4000);
+    }
+
+    function closePopup(){
+      popup.classList.remove('show');
+      sessionStorage.setItem('sentireOcculta_popupSeen', '1');
+    }
+
+    closeBtn.addEventListener('click', closePopup);
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) closePopup();
+    });
+
+    // Form submit: uses Formspree (replace action URL above)
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          success.classList.add('show');
+          sessionStorage.setItem('sentireOcculta_popupSeen', '1');
+          setTimeout(closePopup, 3500);
+        } else {
+          alert('Something went wrong. Please try again.');
+        }
+      } catch(err) {
+        alert('Something went wrong. Please try again.');
+      }
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup.classList.contains('show')) closePopup();
+    });
+  })();
+</script>
+
+</body>
+</html>
